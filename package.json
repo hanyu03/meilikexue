@@ -1,5 +1,5 @@
 {
-  "name": "ziptest",
+  "name": "meilikexue",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "",
@@ -58,5 +58,15 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "main": ".postcssrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanyu03/meilikexue.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanyu03/meilikexue/issues"
+  },
+  "homepage": "https://github.com/hanyu03/meilikexue#readme"
 }
