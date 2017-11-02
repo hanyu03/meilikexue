@@ -29,7 +29,7 @@
                     <span :class="[item.select == '已发布'? '':item.select == '待发布'? greenClass : blueClass]">{{item.select}}</span>
                 </div>
                 <div class="list-time">{{item.time}}</div>
-                <div class="list-handle">
+                <div class="list-handle lc-handle">
                     <el-button type="primary">编辑</el-button>
                     <el-button v-if="item.select == '已发布'" type="danger" disabled>删除</el-button>
                     <el-button v-else type="danger">删除</el-button>
@@ -71,7 +71,7 @@ export default {
               title:'观察根茎叶',
               select:'待发布',
               time:'2017-7-26 / 32M'},
-              {imgUrl:'/static/images/zoom_in.png',
+              {imgUrl:'/static/images/aaa.jpg',
               title:'自定义标题',
               select:'未发布',
               time:'2017-7-26 / 32M'}
@@ -125,19 +125,18 @@ export default {
     font-weight: 700;
     color:#000;
 }
-.listContent li .lc-img{
-    display: inline-flex;
-}
 .listContent li .lc-img>div{
     width: 160px;
     height: 90px;
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    overflow: hidden;
+    display: inline-flex;
 }
 .listContent li .lc-img img{
+    flex: 1;
     max-width: 100% !important;
-    height: auto;
+    max-height: 100% !important;
+}
+.listContent li .lc-handle{
+    display: inline-flex;
+    justify-content: space-between;
 }
 </style>

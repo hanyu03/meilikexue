@@ -56,3 +56,9 @@
 .popper__arrow{
     left:110% !important;
 }
+
+.listContent li .lc-handle .el-button{
+    width: 64px;
+    height: 32px;
+    padding:0;
+}
