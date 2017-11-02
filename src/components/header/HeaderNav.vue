@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       navLink:[
-        {linkName:'媒体入库',linkTo:{path:'/',name:'Home',params:{user:'han'}}},
+        {linkName:'媒体入库',linkTo:{path:'/',name:'home',params:{user:'han'}}},
         {linkName:'资源发布',linkTo:'/resource'},
         {linkName:'用户',linkTo:'/user'},
         {linkName:'消息',linkTo:'/message'},

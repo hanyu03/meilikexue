@@ -8,23 +8,28 @@
           <img :src="item.imgUrl" alt="">
         </li>
       </ul>
-      <div>
-        
+      <div class="homeSearch">
+        <span>全部媒体列表</span>
+        <div class="searchBox">
+          <el-input placeholder="输入关键词搜索" v-model="searchContent" class="input-with-select">
+            <el-button type="primary" slot="append">搜索</el-button>
+          </el-input>
+        </div>
       </div>
     </div>
     
-    <el-row class="resource-list">
-
-    </el-row>
+    <div class="resource-list">
+      <List></List>
+    </div>
   </div>
 </template>
 
 <script>
-import jsZip from 'jszip'
-import fs from 'file-saver'  //用于保存文件到本地
+// import jsZip from 'jszip'
+// import fs from 'file-saver'  //用于保存文件到本地
+import List from '@/components/base/List'
 
 export default {
-  name: 'HelloWorld',
   data () {
     return {
       resourceType:[
@@ -38,42 +43,46 @@ export default {
         {name:'内部分层结构',aliso:'Inner struct',imgUrl:'/static/images/innerstruct.png'},
         {name:'多角度',aliso:'Multi Angle',imgUrl:'/static/images/multiangle.png'},
         {}
-      ]
+      ],
+      searchContent:''
     }
   },
   created () {
   },
   methods:{
-    handle(){
-      alert(123)
-      var zip = new jsZip();  //创建zipObject对象
-      console.log('11',zip)
+    // handle(){
+    //   alert(123)
+    //   var zip = new jsZip();  //创建zipObject对象
+    //   console.log('11',zip)
 
-      zip.file('name01.txt','创建一个文件',{base64:true}); //创建文件
-      zip.file('name02.txt','创建一个文件');
-      var regex = zip.file(/name01/);  //已文件名为规则来匹配文件，返回一个数组，数组项为zipObj
-      console.log(regex)
+    //   zip.file('name01.txt','创建一个文件',{base64:true}); //创建文件
+    //   zip.file('name02.txt','创建一个文件');
+    //   var regex = zip.file(/name01/);  //已文件名为规则来匹配文件，返回一个数组，数组项为zipObj
+    //   console.log(regex)
 
-      zip.folder('css').file('style.css','height:23px;')
-      // zip.file('css/style.css','height:36px;') 
+    //   zip.folder('css').file('style.css','height:23px;')
+    //   // zip.file('css/style.css','height:36px;') 
 
-      zip.forEach(function(rePath,file) {  //以生成的zipObj文件
-        console.log(rePath,file)
-      })
+    //   zip.forEach(function(rePath,file) {  //以生成的zipObj文件
+    //     console.log(rePath,file)
+    //   })
 
-      zip.generateAsync({type:"blob",comment:"jszip生成的zip对象"})   // 生成一个zipObj
-      .then(function(content) {
-          // see FileSaver.js
-          // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
-          console.log('22',zip)
-      });
-      // zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-      //     console.log("progression: " + metadata.percent.toFixed(2) + " %");
-      //     if(metadata.currentFile) {
-      //         console.log("current file = " + metadata.currentFile);
-      //     }
-      // });
-    }
+    //   zip.generateAsync({type:"blob",comment:"jszip生成的zip对象"})   // 生成一个zipObj
+    //   .then(function(content) {
+    //       // see FileSaver.js
+    //       // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+    //       console.log('22',zip)
+    //   });
+    //   // zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
+    //   //     console.log("progression: " + metadata.percent.toFixed(2) + " %");
+    //   //     if(metadata.currentFile) {
+    //   //         console.log("current file = " + metadata.currentFile);
+    //   //     }
+    //   // });
+    // }
+  },
+  components: {
+    List
   }
 }
 </script>
@@ -82,8 +91,6 @@ export default {
 <style scoped>
 .home{
   width: 100%;
-  height:500px;
-  background-color: red
 }
 .resource-type{
   background-color: #f0f0f0;
@@ -114,7 +121,7 @@ export default {
   font-size: 20px;
   color:#000;
   font-weight: 700;
-  
+  cursor: pointer;
 }
 .resource-type li div{
   font-size: 12px;
@@ -132,5 +139,22 @@ export default {
   position: absolute;
   bottom:0;
   right:0;
+}
+.homeSearch{
+  overflow: hidden;
+  text-align: left;
+  font-size: 20px;
+  color:#444;
+  padding:32px 0;
+}
+.homeSearch span{
+  line-height: 36px;
+}
+.homeSearch .searchBox{
+  float:right;
+  width: 240px;
+}
+.resource-list{
+  background: #fff;
 }
 </style>
