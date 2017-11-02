@@ -1,8 +1,21 @@
+.padding-aside{
+    padding:0 12%;
+}
+
+
+
+
+
+
+
+
+.el-main{
+    padding:0;
+}
+
 .el-header {
     height:48px !important;
     background-color: #47a8de;
     padding:0;
 }
-/* .logo {
-    padding-left:48px;
-} */
+
