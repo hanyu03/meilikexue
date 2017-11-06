@@ -25,6 +25,10 @@
     padding:0;
 }
 
+.searchBox{
+    float:right;
+    width: 240px;
+  }
 .searchBox .el-input__inner{
     height:36px;
     font-size: 12px;
@@ -37,6 +41,9 @@
 }
 
 /* 列表头部选择状态栏样式修改 */
+.list{
+    background: #fff;
+  }
 .listHeader .el-select{
     width: 85px;
 }

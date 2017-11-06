@@ -1,7 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/resource/Home'
-
+import Home from '@/components/media/Home'
+import MediaType from '@/components/media/mediaType'
+import AddZoomin from '@/components/media/addZoomin'
+import AddHeatmap from '@/components/media/addHeatmap'
+import AddVR from '@/components/media/addVR'
+import AddTimelapse from '@/components/media/addTimelapse'
+import AddVideo from '@/components/media/addVideo'
+import AddRotation from '@/components/media/addRotation'
+import AddPartial from '@/components/media/addPartial'
+import AddInnerstruct from '@/components/media/addInnerstruct'
+import AddMultiangle from '@/components/media/addMultiangle'
 
 Vue.use(Router)
 
@@ -14,9 +23,53 @@ export default new Router({
       component: Home
     },
     {
-      path: '/media',
-      name: 'media',
-      component: Home
+      path:'/media/:type',
+      component: MediaType
+    },
+    {
+      path:'/media/Zoom in/add',
+      name:'addZoom',
+      component: AddZoomin
+    },
+    {
+      path:'/media/Heat Map/add',
+      name:'addHeatmap',
+      component: AddHeatmap
+    },
+    {
+      path:'/media/Virtual Reality/add',
+      name:'addVR',
+      component: AddVR
+    },
+    {
+      path:'/media/Time Lapse/add',
+      name:'addTimelapse',
+      component: AddTimelapse
+    },
+    {
+      path:'/media/Polyv Video/add',
+      name:'addVideo',
+      component: AddVideo
+    },
+    {
+      path:'/media/360 Rotation/add',
+      name:'addRotation',
+      component: AddRotation
+    },
+    {
+      path:'/media/Partial/add',
+      name:'addPartial',
+      component: AddPartial
+    },
+    {
+      path:'/media/Inner struct/add',
+      name:'addInnerstruct',
+      component: AddInnerstruct
+    },
+    {
+      path:'/media/Multi Angle/add',
+      name:'addMultiangle',
+      component: AddMultiangle
     }
   ]
 })

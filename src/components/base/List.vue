@@ -3,7 +3,7 @@
         <ul class="listHeader border-bottom padding-aside">
             <li class="list-img">缩略图</li>
             <li class="list-title">标题</li>
-            <li class="list-select">
+            <!-- <li class="list-select">
                 <el-select v-model="select.all" placeholder="全部状态">
                     <el-option
                     v-for="item in select.options"
@@ -12,7 +12,7 @@
                     :value="item.value">
                     </el-option>
                 </el-select>
-            </li>
+            </li> -->
             <li class="list-time">时间/大小</li>
             <li class="list-handle">操作</li>
         </ul>
@@ -25,14 +25,13 @@
                     </div>
                 </div>
                 <div class="list-title lc-title">{{item.title}}</div>
-                <div class="list-select">
+                <!-- <div class="list-select">
                     <span :class="[item.select == '已发布'? '':item.select == '待发布'? greenClass : blueClass]">{{item.select}}</span>
-                </div>
+                </div> -->
                 <div class="list-time">{{item.time}}</div>
                 <div class="list-handle lc-handle">
                     <el-button type="primary">编辑</el-button>
-                    <el-button v-if="item.select == '已发布'" type="danger" disabled>删除</el-button>
-                    <el-button v-else type="danger">删除</el-button>
+                    <el-button type="danger" @click="deleteMessage">删除</el-button>
                 </div>
             </li>
         </ul>
@@ -82,7 +81,25 @@ export default {
       
   },
   methods: {
-      
+      //删除提示
+      deleteMessage () {
+          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      }
   }
 }
 </script>
@@ -104,11 +121,11 @@ export default {
 .list-title{
     flex: 1.5;
 }
-.list-select{
+/* .list-select{
     flex: 1.5;
-}
+} */
 .list-time{
-    flex: 3.5;
+    flex: 5.5;
 }
 .list-handle{
     flex: 1.6;
