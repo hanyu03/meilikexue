@@ -1,12 +1,13 @@
 <template>
   <div class="addHeader">
       <slot></slot>
-      <el-row :gutter="20" type="flex" align='middle'>
-          <el-col :span='16'>
+      <el-row :gutter="20" type="flex" align='middle' style="margin-right:0;">
+          <el-col :span='15' style="display:inline-flex;padding:0;margin-left:10px;">
+              <i class="icon-blue"></i>
               <el-input v-model="title" placeholder="请输入标题"></el-input>
           </el-col>
-          <el-col :span='8'>
-            <el-select v-model="optionValue" placeholder="请选择">
+          <el-col :span='9' :offset='1' style="padding:0;">
+            <el-select v-model="optionValue" placeholder="请选择标签">
                 <el-option
                 v-for="item in options"
                 :key="item.value"
@@ -38,5 +39,9 @@ export default {
 </script>
 
 <style scoped>
-
+    .icon-blue{
+        display: inline-block;
+        width: 16px;
+        background-color: #47a8de;
+    }
 </style>

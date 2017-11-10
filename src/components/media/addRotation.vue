@@ -5,7 +5,7 @@
         </AddHeader>
         <el-row class="addVideo-content">
             <el-col :span='8'>
-
+                
             </el-col>
             <el-col :span='16'>
                 

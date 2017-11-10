@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/media/Home'
+import Login from '@/components/login/login'
 import MediaType from '@/components/media/mediaType'
 import AddZoomin from '@/components/media/addZoomin'
 import AddHeatmap from '@/components/media/addHeatmap'
@@ -21,6 +22,11 @@ export default new Router({
       path: '/',
       name:'home',
       component: Home
+    },
+    {
+      path:'/login',
+      name:'login',
+      component: Login
     },
     {
       path:'/media/:type',

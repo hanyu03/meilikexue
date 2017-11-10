@@ -19,14 +19,15 @@
     </div>
     
     <div class="list">
+      <el-button @click='handle'>click</el-button>
       <List></List>
     </div>
   </div>
 </template>
 
 <script>
-// import jsZip from 'jszip'
-// import fs from 'file-saver'  //用于保存文件到本地
+import jsZip from 'jszip'
+import fs from 'file-saver'  //用于保存文件到本地
 import List from '@/components/base/List'
 
 export default {
@@ -95,36 +96,56 @@ export default {
           break;
       }
       
+    },
+    handle(){
+      alert(123)
+      var zip = new jsZip();  //创建zipObject对象
+      console.log('11',zip)
+      zip.file('name01.txt','创建一个文件',{base64:true}); //创建文件
+      zip.file('name02.txt','创建一个文件');
+      var regex = zip.file(/name01/);  //已文件名为规则来匹配文件，返回一个数组，数组项为zipObj
+      // console.log(regex)
+
+      zip.folder('css').file('style.css','height:23px;')
+      // zip.file('css/style.css','height:36px;') 
+
+      zip.forEach(function(rePath,file) {  //以生成的zipObj文件
+        console.log(rePath,file)
+      })
+
+      zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
+      .then(function(content) {
+          // see FileSaver.js
+          fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+          console.log('22',zip)
+      });
+      // zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
+      //     console.log("progression: " + metadata.percent.toFixed(2) + " %");
+      //     if(metadata.currentFile) {
+      //         console.log("current file = " + metadata.currentFile);
+      //     }
+      // });
+    },
+    
+
+    http(){
+      this.axios.post('/BeautyScience/admin/login', {
+        admin:{
+          email:'sundaping@novoedu.com',
+          password:'Ab1234'
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
-    // handle(){
-    //   alert(123)
-    //   var zip = new jsZip();  //创建zipObject对象
-    //   console.log('11',zip)
-    //   zip.file('name01.txt','创建一个文件',{base64:true}); //创建文件
-    //   zip.file('name02.txt','创建一个文件');
-    //   var regex = zip.file(/name01/);  //已文件名为规则来匹配文件，返回一个数组，数组项为zipObj
-    //   console.log(regex)
 
-    //   zip.folder('css').file('style.css','height:23px;')
-    //   // zip.file('css/style.css','height:36px;') 
-
-    //   zip.forEach(function(rePath,file) {  //以生成的zipObj文件
-    //     console.log(rePath,file)
-    //   })
-
-    //   zip.generateAsync({type:"blob",comment:"jszip生成的zip对象"})   // 生成一个zipObj
-    //   .then(function(content) {
-    //       // see FileSaver.js
-    //       // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
-    //       console.log('22',zip)
-    //   });
-    //   // zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-    //   //     console.log("progression: " + metadata.percent.toFixed(2) + " %");
-    //   //     if(metadata.currentFile) {
-    //   //         console.log("current file = " + metadata.currentFile);
-    //   //     }
-    //   // });
-    // }
+  },
+  mounted () {
+    this.http()
   },
   components: {
     List

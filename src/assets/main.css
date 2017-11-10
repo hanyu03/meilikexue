@@ -13,6 +13,19 @@
 
 
 
+/* 登陆页面 */
+.loginBox .el-form-item__content{
+    margin: 0 !important;
+}
+.loginBox .el-form-item__content .el-input__inner{
+    /* height: 56px; */
+}
+.loginBox .el-button{
+    width: 100%;
+    /* font-size: 20px; */
+    /* padding: 18px 20px; */
+}
+
 
 
 .el-main{
@@ -68,4 +81,22 @@
     width: 64px;
     height: 32px;
     padding:0;
+}
+
+/* 新增板块头部 */
+.addHeader-title{
+    padding: 32px 0 16px 0;
+    font-size: 18px;
+    color: #333; 
+}
+.addHeader .el-col-15,.addHeader .el-col-9,.addHeader .el-input__inner{
+    background-color: #f0f0f0;
+}
+.addHeader .el-input__inner{
+    height: 56px;
+    border: none;
+}
+.addHeader .el-input__inner::placeholder{
+    font-size: 18px;
+    color:#999;
 }
