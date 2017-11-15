@@ -50,7 +50,31 @@ export default {
   },
   methods: {
       loginSubmit(){
-          
+          let that = this;
+          this.axios.post('/BeautyScience/admin/login',{
+            admin:{
+                email:this.loginData.email,
+                password:this.loginData.passWord
+            }
+          })
+          .then(function(response){
+              let data = response.data;
+              localStorage.setItem('accessToken', data.access_token)
+              localStorage.setItem('accessExp', data.access_exp)
+              localStorage.setItem('refreshToken', data.refresh_token)
+              localStorage.setItem('refreshExp', data.refresh_exp)
+              localStorage.setItem('userEmail', data.admin.email)
+              localStorage.setItem('userLevel', data.admin.level)
+              console.log(data)
+              that.$router.push('/')
+          })
+          .catch(function (error) {
+              if(error.response.status == 401){
+                  that.$message.error('用户或密码错误');
+              }else{
+                  console.log(error)
+              }
+          });
       }
   }
 }

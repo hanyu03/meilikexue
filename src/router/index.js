@@ -15,6 +15,10 @@ import AddMultiangle from '@/components/media/addMultiangle'
 
 Vue.use(Router)
 
+
+
+
+
 export default new Router({
   // mode: 'history',
   routes: [

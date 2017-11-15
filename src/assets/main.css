@@ -1,6 +1,21 @@
 .padding-aside{
     padding:0 12%;
 }
+.padding-left-20{
+    padding-left: 20px;
+}
+.padding-right-20{
+    padding-right: 20px;
+}
+.margin-left-20{
+    margin-left: 20px;
+}
+.margin-right-20{
+    margin-right: 20px;
+}
+.clearBoth::after{
+    clear: both;
+}
 .border-bottom{
     border-bottom: 1px solid #e6e6e6;
 }
@@ -10,7 +25,36 @@
 .blue{
     color:#47a8de;
 }
-
+.upInput{
+    /* display: none; */
+    opacity: 0;
+}
+.upBox{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.upContent{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+.upContent-icon{
+    display: none;
+    position: absolute;
+    top:0;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(117, 117, 117, 0.5);
+    text-align: center;
+}
+.upContent:hover .upContent-icon{
+    display: block;
+}
 
 
 /* 登陆页面 */
@@ -18,7 +62,7 @@
     margin: 0 !important;
 }
 .loginBox .el-form-item__content .el-input__inner{
-    /* height: 56px; */
+    height: 48px;
 }
 .loginBox .el-button{
     width: 100%;
@@ -100,3 +144,13 @@
     font-size: 18px;
     color:#999;
 }
+
+/*新增视频 */
+/* .addVideo .el-upload--picture-card {
+    width: 100%;
+    height: 270px;
+    line-height: 270px;
+    border: none;
+    border-radius: 0;
+    background-color: #f0f0f0;
+} */

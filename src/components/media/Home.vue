@@ -19,7 +19,20 @@
     </div>
     
     <div class="list">
-      <el-button @click='handle'>click</el-button>
+      <div>
+        <input id="fileVideo" type="file" @change="fileZip('fileVideo','ovideo')">
+      <!-- <img id="ovideo" src="" alt=""> -->
+        <video id="ovideo" src="" poster></video>
+      </div>
+      <div>
+        <input id="fileImg" type="file" @change="fileZip('fileImg','oimg')">
+        <img id="oimg" src="" alt="">
+        <!-- <video id="ovideo" src="" poster></video> -->
+      </div>
+      <div>
+        <button @click="zipClick">压缩</button>
+      </div>
+      
       <List></List>
     </div>
   </div>
@@ -97,6 +110,41 @@ export default {
       }
       
     },
+    fileZip(inputId,id){
+      var zip = new jsZip();
+      let ofile = document.getElementById(inputId).files[0];
+      let ovideo = document.getElementById(id)
+      let reader  = new FileReader();
+      reader.addEventListener("load", function () {
+        ovideo.src = reader.result;
+        ovideo.setAttribute("width", "800px");
+        ovideo.setAttribute("height", "600px");
+      }, false);
+
+      if (ofile) {
+        reader.readAsDataURL(ofile);
+      }
+      // zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
+      // .then(function(content) {
+      //     // see FileSaver.js
+      //     // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+      //     console.log('22',zip)
+      // });
+    },
+    zipClick(){
+      // var zip = new jsZip();
+      // let ofile = document.getElementById("fileImg").files[0];
+      // let ofileVideo = document.getElementById("fileVideo").files[0];
+      // console.log(ofile)
+      // zip.file(ofile.name,ofile)
+      // zip.file(ofileVideo.name,ofileVideo)
+      // zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
+      // .then(function(content) {
+      //     // see FileSaver.js
+      //     // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+      //     console.log('22',zip)
+      // });
+    },
     handle(){
       alert(123)
       var zip = new jsZip();  //创建zipObject对象
@@ -116,7 +164,7 @@ export default {
       zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
       .then(function(content) {
           // see FileSaver.js
-          fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+          // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
           console.log('22',zip)
       });
       // zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
@@ -126,26 +174,9 @@ export default {
       //     }
       // });
     },
-    
-
-    http(){
-      this.axios.post('/BeautyScience/admin/login', {
-        admin:{
-          email:'sundaping@novoedu.com',
-          password:'Ab1234'
-        }
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
-
   },
   mounted () {
-    this.http()
+
   },
   components: {
     List

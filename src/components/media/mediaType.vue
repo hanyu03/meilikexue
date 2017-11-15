@@ -98,6 +98,7 @@ export default {
 .mediaType-header{
     padding-top: 56px;
     padding-bottom:65px;
+    background-color: #f0f0f0;
 }
 .mediaType-header .typeAdd{
     text-align: left;
