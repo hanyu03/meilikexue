@@ -5,9 +5,9 @@
         </AddHeader>
         <el-row class="addVideo-content">
             <el-col class="upImg padding-right-20" :span='8'>
-                <upImg></upImg>
+                <upImg :qiniuToken = "qiniuToken"></upImg>
                 <div>
-                    <el-button type="primary">压缩</el-button>
+                    <el-button type="primary" @click="beforeUp">压缩</el-button>
                     <el-button type="danger">取消</el-button>
                 </div>
             </el-col>
@@ -27,17 +27,19 @@ import upVideo from '@/components/base/upVideo'
 export default {
   data(){
       return {
-        
+        qiniuToken:''
       }
   },
   methods:{
       beforeUp(){
           alert(1123)
-          this.axios.post('BeautyScience/res/token',{
+          let that = this;
+          this.axios.post('BeautyScience/qiniu/token',{
               res_name:'123465'
           })
           .then(function(response){
-              console.log(response)
+              that.qiniuToken = response.data.uptoken
+              console.log(that.qiniuToken)
           })
       },
       fileUrl(){

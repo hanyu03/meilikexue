@@ -5,10 +5,11 @@ Vue.use(vuex)
 
 
 
-const fileImg = {};
-const fileFile = {};
+const state = {
+    fileImg:{},
+    fileVideo:{}
+}
 
 export default new vuex({
-    fileImg,
-    fileFile
+    state
 })

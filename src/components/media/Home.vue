@@ -132,18 +132,18 @@ export default {
       // });
     },
     zipClick(){
-      // var zip = new jsZip();
-      // let ofile = document.getElementById("fileImg").files[0];
-      // let ofileVideo = document.getElementById("fileVideo").files[0];
-      // console.log(ofile)
-      // zip.file(ofile.name,ofile)
-      // zip.file(ofileVideo.name,ofileVideo)
-      // zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
-      // .then(function(content) {
-      //     // see FileSaver.js
-      //     // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
-      //     console.log('22',zip)
-      // });
+      var zip = new jsZip();
+      let ofile = document.getElementById("fileImg").files[0];
+      let ofileVideo = document.getElementById("fileVideo").files[0];
+      console.log(ofile)
+      zip.file(ofile.name,ofile)
+      zip.file(ofileVideo.name,ofileVideo)
+      zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
+      .then(function(content) {
+          // see FileSaver.js
+          // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+          console.log('22',zip)
+      });
     },
     handle(){
       alert(123)

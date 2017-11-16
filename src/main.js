@@ -27,38 +27,41 @@ Vue.prototype.axios = axios;
 // }
 axios.interceptors.request.use(
   config => {
-      let now = parseInt(new Date().valueOf()/1000);
-      let accessExp = window.localStorage.getItem('accessExp')
-      let refreshExp = window.localStorage.getItem('refreshExp')
-      if( now < parseInt(accessExp)){
-        config.headers.common['Authorization'] = `${window.localStorage.getItem('accessToken')}`;
-      }else if(now > parseInt(accessExp) && now < parseInt(refreshExp)){
-        axios.post('/BeautyScience/admin/refresh', {
-          token:{
-            refresh_token:window.localStorage.getItem('refreshToken')
-          }
-        })
-        .then(function (response) {
-            let data = response.data;
-            localStorage.setItem('accessToken', data.access_token)
-            localStorage.setItem('accessExp', data.access_exp)
-            config.headers.common['Authorization'] = `${window.localStorage.getItem('accessToken')}`;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      if(config.url == "/BeautyScience/admin/login"){
+        return config;
+      }else if(config.url == "/BeautyScience/admin/refresh"){
+        return config;
       }else{
-        window.localStorage.removeItem('accessToken');
-        window.localStorage.removeItem('accessExp');
-        window.localStorage.removeItem('refreshToken');
-        window.localStorage.removeItem('refreshExp');
-        window.localStorage.removeItem('userEmail');
-        window.localStorage.removeItem('userLevel');
-        router.replace({
-          path:'/login'
-        })
+        let now = parseInt(new Date().valueOf()/1000);
+        let accessExp = window.localStorage.getItem('accessExp');
+        let refreshExp = window.localStorage.getItem('refreshExp');
+        if( now < parseInt(accessExp)){
+          config.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem('accessToken')}`;
+        }else if(now > parseInt(accessExp) && now < parseInt(refreshExp)){
+          axios.post('/BeautyScience/admin/refresh', {
+            token:{
+              refresh_token:window.localStorage.getItem('refreshToken')
+            }
+          })
+          .then(function (response) {
+              let data = response.data;
+              window.localStorage.setItem('accessToken', data.access_token)
+              window.localStorage.setItem('accessExp', data.access_exp)
+              config.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem('accessToken')}`;
+          })
+        }else{
+          window.localStorage.removeItem('accessToken');
+          window.localStorage.removeItem('accessExp');
+          window.localStorage.removeItem('refreshToken');
+          window.localStorage.removeItem('refreshExp');
+          window.localStorage.removeItem('userEmail');
+          window.localStorage.removeItem('userLevel');
+          router.replace({
+            path:'/login'
+          })
+        }
+        return config;
       }
-      return config;
   },
   err => {
       return Promise.reject(err);
@@ -70,9 +73,9 @@ axios.interceptors.request.use(
       //   }
       // })
       // .then(function (response) {
-        // let data = response.data;
-        // localStorage.setItem('accessToken', data.access_token)
-        // localStorage.setItem('accessExp', data.access_exp)
+      //   let data = response.data;
+      //   localStorage.setItem('accessToken', data.access_token)
+      //   localStorage.setItem('accessExp', data.access_exp)
       // })
       // .catch(function (error) {
       //   console.log(error);

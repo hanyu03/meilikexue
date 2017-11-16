@@ -15,13 +15,14 @@
         width="70%">
             <img width="100%" :src="dialogImageUrl" alt="">
         </el-dialog>
-        
+        <el-button id="ppp" type="danger"></el-button>
     </div>
 </template>
 
 <script>
 
 export default {
+    props:['qiniuToken'],
   data () {
       return {
           dialogVisible:false,
@@ -29,6 +30,25 @@ export default {
           dialogImageUrl:'',
           imgFile:{}
       }
+  },
+  mounted () {
+    //   console.log(this.qiniuToken)
+    //   var uploader = Qiniu.uploader({
+    //     runtimes: 'html5,flash,html4',      // 上传模式，依次退化
+    //     browse_button: 'ppp',
+    //     uptoken_func: function(){    // 在需要获取uptoken时，该方法会被调用
+    //         let uptoken
+    //         this.axios.post('BeautyScience/qiniu/token',{
+    //           res_name:'123465'
+    //       })
+    //       .then(function(response){
+    //           console.log(response)
+    //           uptoken = response.data.uptoken
+    //           console.log(uptoken)
+    //       })
+    //         return uptoken;
+    //     },
+    //   })
   },
   methods: {
       //选择文件
