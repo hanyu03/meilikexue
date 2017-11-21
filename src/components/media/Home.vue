@@ -19,20 +19,6 @@
     </div>
     
     <div class="list">
-      <div>
-        <input id="fileVideo" type="file" @change="fileZip('fileVideo','ovideo')">
-      <!-- <img id="ovideo" src="" alt=""> -->
-        <video id="ovideo" src="" poster></video>
-      </div>
-      <div>
-        <input id="fileImg" type="file" @change="fileZip('fileImg','oimg')">
-        <img id="oimg" src="" alt="">
-        <!-- <video id="ovideo" src="" poster></video> -->
-      </div>
-      <div>
-        <button @click="zipClick">压缩</button>
-      </div>
-      
       <List></List>
     </div>
   </div>
@@ -110,70 +96,41 @@ export default {
       }
       
     },
-    fileZip(inputId,id){
-      var zip = new jsZip();
-      let ofile = document.getElementById(inputId).files[0];
-      let ovideo = document.getElementById(id)
-      let reader  = new FileReader();
-      reader.addEventListener("load", function () {
-        ovideo.src = reader.result;
-        ovideo.setAttribute("width", "800px");
-        ovideo.setAttribute("height", "600px");
-      }, false);
+    // fileZip(inputId,id){
+    //   var zip = new jsZip();
+    //   let ofile = document.getElementById(inputId).files[0];
+    //   let ovideo = document.getElementById(id)
+    //   let reader  = new FileReader();
+    //   reader.addEventListener("load", function () {
+    //     ovideo.src = reader.result;
+    //     ovideo.setAttribute("width", "800px");
+    //     ovideo.setAttribute("height", "600px");
+    //   }, false);
 
-      if (ofile) {
-        reader.readAsDataURL(ofile);
-      }
-      // zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
-      // .then(function(content) {
-      //     // see FileSaver.js
-      //     // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
-      //     console.log('22',zip)
-      // });
-    },
-    zipClick(){
-      var zip = new jsZip();
-      let ofile = document.getElementById("fileImg").files[0];
-      let ofileVideo = document.getElementById("fileVideo").files[0];
-      console.log(ofile)
-      zip.file(ofile.name,ofile)
-      zip.file(ofileVideo.name,ofileVideo)
-      zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
-      .then(function(content) {
-          // see FileSaver.js
-          // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
-          console.log('22',zip)
-      });
-    },
-    handle(){
-      alert(123)
-      var zip = new jsZip();  //创建zipObject对象
-      console.log('11',zip)
-      zip.file('name01.txt','创建一个文件',{base64:true}); //创建文件
-      zip.file('name02.txt','创建一个文件');
-      var regex = zip.file(/name01/);  //已文件名为规则来匹配文件，返回一个数组，数组项为zipObj
-      // console.log(regex)
-
-      zip.folder('css').file('style.css','height:23px;')
-      // zip.file('css/style.css','height:36px;') 
-
-      zip.forEach(function(rePath,file) {  //以生成的zipObj文件
-        console.log(rePath,file)
-      })
-
-      zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
-      .then(function(content) {
-          // see FileSaver.js
-          // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
-          console.log('22',zip)
-      });
-      // zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-      //     console.log("progression: " + metadata.percent.toFixed(2) + " %");
-      //     if(metadata.currentFile) {
-      //         console.log("current file = " + metadata.currentFile);
-      //     }
-      // });
-    },
+    //   if (ofile) {
+    //     reader.readAsDataURL(ofile);
+    //   }
+    //   // zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
+    //   // .then(function(content) {
+    //   //     // see FileSaver.js
+    //   //     // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+    //   //     console.log('22',zip)
+    //   // });
+    // },
+    // zipClick(){
+    //   var zip = new jsZip();
+    //   let ofile = document.getElementById("fileImg").files[0];
+    //   let ofileVideo = document.getElementById("fileVideo").files[0];
+    //   console.log(ofile)
+    //   zip.file(ofile.name,ofile)
+    //   zip.file(ofileVideo.name,ofileVideo)
+    //   zip.generateAsync({type:"blob",comment:"ssss"})   // 生成一个zipObj
+    //   .then(function(content) {
+    //       // see FileSaver.js
+    //       // fs.saveAs(content, "test.zip");  //使用fileSave 保存至本地
+    //       console.log('22',zip)
+    //   });
+    // }
   },
   mounted () {
 

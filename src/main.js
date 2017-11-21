@@ -47,8 +47,8 @@ axios.interceptors.request.use(
               let data = response.data;
               window.localStorage.setItem('accessToken', data.access_token)
               window.localStorage.setItem('accessExp', data.access_exp)
-              config.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem('accessToken')}`;
           })
+          config.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem('accessToken')}`;
         }else{
           window.localStorage.removeItem('accessToken');
           window.localStorage.removeItem('accessExp');

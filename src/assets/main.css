@@ -25,6 +25,9 @@
 .blue{
     color:#47a8de;
 }
+.background-gray{
+    background-color: #f0f0f0;
+}
 .upInput{
     /* display: none; */
     opacity: 0;

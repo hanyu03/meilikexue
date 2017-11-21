@@ -20,6 +20,7 @@
 </template>
 
 <script>
+require('qiniu-js/dist/qiniu.js')
 
 export default {
     props:['qiniuToken'],

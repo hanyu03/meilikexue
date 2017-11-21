@@ -12,6 +12,10 @@ import AddRotation from '@/components/media/addRotation'
 import AddPartial from '@/components/media/addPartial'
 import AddInnerstruct from '@/components/media/addInnerstruct'
 import AddMultiangle from '@/components/media/addMultiangle'
+import resourceView from '@/components/resource/resourceView'
+import version from '@/components/resource/version'
+import edition from '@/components/resource/edition'
+import grades from '@/components/resource/grades'
 
 Vue.use(Router)
 
@@ -23,14 +27,14 @@ export default new Router({
   // mode: 'history',
   routes: [
     {
-      path: '/',
-      name:'home',
-      component: Home
-    },
-    {
       path:'/login',
       name:'login',
       component: Login
+    },
+    {
+      path: '/',
+      name:'home',
+      component: Home
     },
     {
       path:'/media/:type',
@@ -80,6 +84,27 @@ export default new Router({
       path:'/media/Multi Angle/add',
       name:'addMultiangle',
       component: AddMultiangle
-    }
+    },
+    {
+      path: '/resource',
+      component: resourceView,
+      children:[
+        {
+          path:'/',
+          name:'version',
+          component:version
+        },
+        {
+          path:'/resource/edition',
+          name:'edition',
+          component:edition
+        },
+        {
+          path:'/resource/grades',
+          name:'grades',
+          component:grades
+        },
+      ]
+    },
   ]
 })

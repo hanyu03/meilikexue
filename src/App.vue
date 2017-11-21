@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-container>
+    <el-container style="height:100%;">
       <el-header>
         <HeaderNav></HeaderNav>
       </el-header>

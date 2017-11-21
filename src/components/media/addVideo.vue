@@ -3,9 +3,11 @@
         <AddHeader>
             <h3 class="addHeader-title">视频</h3>
         </AddHeader>
+        
         <el-row class="addVideo-content">
             <el-col class="upImg padding-right-20" :span='8'>
-                <upImg :qiniuToken = "qiniuToken"></upImg>
+                <plupload></plupload>
+                <!-- <upImg :qiniuToken = "qiniuToken"></upImg> -->
                 <div>
                     <el-button type="primary" @click="beforeUp">压缩</el-button>
                     <el-button type="danger">取消</el-button>
@@ -23,6 +25,7 @@
 import AddHeader from '@/components/base/addHeader'
 import upImg from '@/components/base/upImg'
 import upVideo from '@/components/base/upVideo'
+import plupload from '@/components/base/plupload'
 
 export default {
   data(){
@@ -50,7 +53,7 @@ export default {
   mounted () {
   },
   components: {
-      AddHeader,upImg,upVideo
+      AddHeader,upVideo,plupload
   }
 }
 </script>
