@@ -180,6 +180,7 @@ export default {
                 that.resourceData.brief = res.data.brief
                 that.resourceData.intro = res.data.intro
                 that.resourceData.meta_info_id = res.data.meta_info.id
+                that.resourceData.scenarios = res.data.scenarios
                 that.axios.post('/BeautyScience/qiniu/url',{
                     res_name:res.data.meta_info.thumb
                 })

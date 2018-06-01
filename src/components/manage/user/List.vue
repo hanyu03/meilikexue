@@ -8,10 +8,10 @@
 				</router-link>
 				<div class="searchBox" style="min-width:70%;">
 					<el-row>
-						<el-col :span="10" class="areaSelect">
+						<!-- <el-col :span="10" class="areaSelect">
 							<area-select type='text' v-model="location" :data="pcaa"></area-select>
-						</el-col>
-						<el-col :span="6" class="areaSelect">
+						</el-col> -->
+						<el-col :span="8" class="areaSelect">
 							<el-input placeholder="输入学校" v-model="shcool">
 								<el-button type="primary" slot="append" @click="searchList">搜索</el-button>
 							</el-input>
@@ -114,16 +114,16 @@
 </template>
 
 <script>
-import 'vue-area-linkage/dist/index.css';
-import {AreaSelect} from 'vue-area-linkage';
+// import 'vue-area-linkage/dist/index.css';
+// import {AreaSelect} from 'vue-area-linkage';
 import {CustomFun,pageSizes} from '../../../assets/main.js'
 
 const pcaaDefault = require('area-data/pcaa');
     export default {
-			components:{AreaSelect},
+			// components:{AreaSelect},
       data() {
         return {  
-					pcaa:pcaaDefault,      	     	
+			// pcaa:pcaaDefault,      	     	
         	pageSize:pageSizes,
         	dialogVisible:false,
         	openId:null,
@@ -199,9 +199,7 @@ const pcaaDefault = require('area-data/pcaa');
 		          method:'post',
 		          url: '/BeautyScience/users/search',
 		          data:{
-								province:that.location[0],
-								city:that.location[1],
-								school_name:that.shcool
+					school_name:that.shcool
 		          }
 		        }).then(function (res) {	        		        	
 		        	that.tableData = res.data.records;	        	

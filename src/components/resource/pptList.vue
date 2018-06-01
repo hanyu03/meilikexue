@@ -157,8 +157,8 @@ export default {
             // this.listenResid(resId);
             var that = this;
             that.axios({
-              method:'post',
-              url: '/BeautyScience/coursewares',
+              method:'patch',
+              url: '/BeautyScience/coursewares/'+item.id,
               data:{                
                 courseware:{
                     title : item.title,
@@ -169,14 +169,15 @@ export default {
                     lesson_ids:[that.$route.query.lesson_id]
                 }
               }
-            }).then(function (res) {                
-              if(res.status == 201){
-                that.$message.success('添加成功');
-                that.dialogTableVisible = false;
-                // that.$router.push('/media_/PPT');
-              }else{
-                that.$message.error('添加失败');
-              }                           
+            }).then(function (res) {   
+                console.log(res)          
+            //   if(res.status == 201){
+            //     that.$message.success('添加成功');
+            //     that.dialogTableVisible = false;
+            //     // that.$router.push('/media_/PPT');
+            //   }else{
+            //     that.$message.error('添加失败');
+            //   }                           
             }).catch(function (error) {
               console.log(error);             
             });
