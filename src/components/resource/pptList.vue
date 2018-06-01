@@ -166,7 +166,7 @@ export default {
                     url : item.url,
                     tag : item.tag,
                     file_size:item.file_size,
-                    lesson_ids:that.$route.query.lesson_id
+                    lesson_ids:[that.$route.query.lesson_id]
                 }
               }
             }).then(function (res) {                

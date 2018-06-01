@@ -6,16 +6,24 @@
 				<router-link to="/manage/adduser">			
 					<el-button type="primary" icon="el-icon-plus">开通新账号</el-button>
 				</router-link>
-				<div class="searchBox" style="min-width:800px;">
+				<div class="searchBox" style="min-width:70%;">
 					<el-row>
-						<el-col :span="12">
+						<el-col :span="10" class="areaSelect">
 							<area-select type='text' v-model="location" :data="pcaa"></area-select>
 						</el-col>
-						 <!-- class="input-with-select" -->
-						<el-col :span="12">
-							<el-input placeholder="输入手机号搜索" v-model="searchContent">
+						<el-col :span="6" class="areaSelect">
+							<el-input placeholder="输入学校" v-model="shcool">
 								<el-button type="primary" slot="append" @click="searchList">搜索</el-button>
-						</el-input>
+							</el-input>
+						</el-col>
+						 <!-- class="input-with-select" -->
+						<el-col :span="8" style="position:relative;">
+							<el-input placeholder="输入搜索信息" v-model="searchContent">
+								<!-- <el-button type="primary" slot="append" @click="searchList(1)">搜手机</el-button> -->
+								<el-button class="btnPhone" slot="append" type="primary" @click="searchList1(1)">搜手机</el-button>
+							
+							</el-input>
+							<el-button class="btnName" type="primary" @click="searchList1(2)">搜姓名</el-button>
 						</el-col>
 					</el-row>
 				</div>
@@ -123,7 +131,8 @@ const pcaaDefault = require('area-data/pcaa');
         	bookVal:{id:null,name:'全部版本'},
         	DropShow1:false,
 					DropShow2:false,
-					location:[],      	
+					location:[],
+					shcool:'',      	
         	searchContent:'',
         	identityArr:[
         		{value:null,name:'全部身份'},
@@ -192,7 +201,7 @@ const pcaaDefault = require('area-data/pcaa');
 		          data:{
 								province:that.location[0],
 								city:that.location[1],
-								school_name:that.searchContent
+								school_name:that.shcool
 		          }
 		        }).then(function (res) {	        		        	
 		        	that.tableData = res.data.records;	        	
@@ -202,6 +211,38 @@ const pcaaDefault = require('area-data/pcaa');
 		        });
       		}	                   
       	},
+				searchList1(btnType){
+					let that =this
+					if(this.searchContent!=''){
+						if(btnType == 1){
+							that.axios({
+								method:'post',
+								url: '/BeautyScience/users/search',
+								data:{
+									phone:that.searchContent
+								}
+							}).then(function (res) {	        		        	
+								that.tableData = res.data.records;	        	
+								that.pageData.Results = res.data.all;		      
+							}).catch(function (error) {
+								console.log(error);		          
+							});
+						}else{
+							that.axios({
+								method:'post',
+								url: '/BeautyScience/users/search',
+								data:{
+									full_name:that.searchContent
+								}
+							}).then(function (res) {	        		        	
+								that.tableData = res.data.records;	        	
+								that.pageData.Results = res.data.all;		      
+							}).catch(function (error) {
+								console.log(error);		          
+							});
+						}
+					}
+				},
       	Setpower(id,status){//解封/封禁
       		var that = this;
 	        that.axios({
@@ -309,4 +350,21 @@ const pcaaDefault = require('area-data/pcaa');
     }
  </script>
 <style scoped>
+.areaSelect{
+	display: inline-flex;
+	justify-content: flex-end;
+	padding-right: 10px;
+}
+.btnPhone{
+	
+}
+.btnName{
+	position: absolute;
+	top: 0;
+	right: -88px;
+	height: 36px;
+	border-radius: 0;
+	background-color: #47a8de;
+}
+
 </style>
