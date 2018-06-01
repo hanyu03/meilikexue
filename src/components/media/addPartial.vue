@@ -88,7 +88,7 @@
                     <p class="thumbText">上传视频尺寸要求: 1920*1080px </p>
                 </el-form-item>
                 <el-form-item prop="text" class="diaVideo" v-else>                   
-                    <el-input v-model="hotData.text" type="textarea" :rows="5"></el-input>
+                    <el-input ref="innerText" v-model="hotData.text" type="textarea" :rows="5"></el-input>
                 </el-form-item>
                 <el-form-item prop="left_mg" 
                 :rules="[
@@ -281,8 +281,9 @@ export default {
             }else if(this.hotData.types == 1){               
                 this.$refs['innerUpVideo'].VideoUrl = this.hotList[index].imgUrl;
                 this.$refs['innerUpVideo'].boxVisible = true;                               
+            }else{
+                this.hotData.text = this.hotList[index].text
             }
-            //console.log(this.hotData)
         },
         delItem(id){//删除
             this.hotList.splice(id,1);
@@ -307,8 +308,7 @@ export default {
                             type:item.types,
                             file_name:item.ImgFileName
                         })
-                    }                    
-                                        
+                    }     
                 });
                 this.upBtnVisible = true;
                 var zip = new jsZip();
@@ -343,7 +343,7 @@ export default {
                 this.$refs['innerUpVideo'].videoFile = {};
                 this.$refs['innerUpVideo'].VideoUrl = '';
                 this.$refs['innerUpVideo'].boxVisible = false;                
-            } 
+            }
             this.dialogFormVisible = false;
             this.diaImgFileArr = [];
             this.resetForm(); 
@@ -391,6 +391,7 @@ export default {
                     this.hotList[this.editIndex].bottom_mg = this.hotData.bottom_mg;
                     this.hotList[this.editIndex].imgUrl = this.hotData.imgUrl;
                     this.hotList[this.editIndex].ImgFileName = this.hotData.ImgFileName;
+                    this.hotList[this.editIndex].text = this.hotData.text;
                     //console.log('edit',this.hotData)
                 }               
                 this.listItem = {};

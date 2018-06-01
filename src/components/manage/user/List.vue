@@ -4,11 +4,20 @@
 			<div class="user-crumbs">
 				<h3>用户列表({{pageData.Results}})</h3>
 				<router-link to="/manage/adduser">			
-				<el-button type="primary" icon="el-icon-plus">开通新账号</el-button></router-link>
-				<div class="searchBox">
-						<el-input placeholder="输入手机号搜索" v-model="searchContent" class="input-with-select">
+					<el-button type="primary" icon="el-icon-plus">开通新账号</el-button>
+				</router-link>
+				<div class="searchBox" style="min-width:800px;">
+					<el-row>
+						<el-col :span="12">
+							<area-select type='text' v-model="location" :data="pcaa"></area-select>
+						</el-col>
+						 <!-- class="input-with-select" -->
+						<el-col :span="12">
+							<el-input placeholder="输入手机号搜索" v-model="searchContent">
 								<el-button type="primary" slot="append" @click="searchList">搜索</el-button>
 						</el-input>
+						</el-col>
+					</el-row>
 				</div>
 			</div>
 		</div>
@@ -26,7 +35,7 @@
 							<ul class="dropList" v-show="DropShow1">
 								<template v-for="item in identityArr">
 									<li @click="ClickId(1,item.value,item.name)">{{item.name}}</li>
-								</template>7							
+								</template>							
 							</ul>
 						</th>
 						<th>
@@ -95,18 +104,26 @@
 		</el-dialog>
 	</div>
 </template>
+
 <script>
-	import {CustomFun,pageSizes} from '../../../assets/main.js'
+import 'vue-area-linkage/dist/index.css';
+import {AreaSelect} from 'vue-area-linkage';
+import {CustomFun,pageSizes} from '../../../assets/main.js'
+
+const pcaaDefault = require('area-data/pcaa');
     export default {
+			components:{AreaSelect},
       data() {
-        return {        	     	
+        return {  
+					pcaa:pcaaDefault,      	     	
         	pageSize:pageSizes,
         	dialogVisible:false,
         	openId:null,
         	utypeVal:{id:null,name:'全部身份'},
         	bookVal:{id:null,name:'全部版本'},
         	DropShow1:false,
-        	DropShow2:false,        	
+					DropShow2:false,
+					location:[],      	
         	searchContent:'',
         	identityArr:[
         		{value:null,name:'全部身份'},
@@ -128,10 +145,10 @@
         	],
         	tableData:[],
         	pageData:{					
-				PageID:1,
-				Perpage:10,
-				Results:1											
-			}         
+						PageID:1,
+						Perpage:10,
+						Results:1											
+					}         
         }
       },
       methods: {
@@ -166,14 +183,16 @@
       	},
       	searchList(){
       		var that = this;
-      		if(this.searchContent==''){
+      		if(this.searchContent==''&&this.location.length==0){
       			that.getList(1);
       		}else{
       			that.axios({
 		          method:'post',
 		          url: '/BeautyScience/users/search',
-		          data:{	          	
-		          	keyword:that.searchContent
+		          data:{
+								province:that.location[0],
+								city:that.location[1],
+								school_name:that.searchContent
 		          }
 		        }).then(function (res) {	        		        	
 		        	that.tableData = res.data.records;	        	

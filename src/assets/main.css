@@ -167,7 +167,7 @@
 .dropList li{text-align: center; height: 26px; line-height: 26px; cursor: pointer; color: #666; font-weight: 600}
 .table-box thead th:first-child,.table-box tbody td:first-child{padding-left: 12%;}
 .table-box thead th:last-child,.table-box tbody td:last-child{padding-right: 12%;}
-.table-box tbody td.opt{font-size: 0}
+.table-box tbody td.opt{font-size: 0;display: inline-flex;align-items: center;}
 .table-box tbody td{height: 60px; border-bottom: 1px solid #e6e6e6; text-align: left; padding-left: 20px; color: #999;word-break: break-word;}
 
 .addUser{padding: 0 12%; background: #FFF;}
