@@ -1,0 +1,310 @@
+.padding-aside{
+    padding:0 12%;
+}
+.padding-left-20{
+    padding-left: 20px;
+}
+.padding-right-20{
+    padding-right: 20px;
+}
+.margin-left-20{
+    margin-left: 20px;
+}
+.margin-right-20{
+    margin-right: 20px;
+}
+.margin-top-20{
+    margin-top: 20px;
+}
+.clearBoth{
+    zoom: 1;
+}
+.clearBoth::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.border-bottom{
+    border-bottom: 1px solid #e6e6e6;
+}
+.green{
+    color:#5aa816;
+}
+.blue{
+    color:#47a8de;
+}
+.background-gray{
+    background-color: #f0f0f0;
+}
+.upInput{
+    /* display: none; */
+    opacity: 0;
+}
+.upBox{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.upContent{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000
+}
+.upContent-icon{
+    display: none;
+    position: absolute;
+    top:0;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(117, 117, 117, 0.5);
+    text-align: center;
+    color: #FFF
+}
+.upContent:hover .upContent-icon{
+    display: block;
+}
+.bg_white{
+    /* background-color: #fff; */
+}
+.thumbText{
+    font-size: 12px;
+    color: #b9b9b9;
+    line-height: 22px;
+}
+
+/* 登陆页面 */
+.loginBox .el-form-item__content{
+    margin: 0 !important;
+}
+.loginBox .el-form-item__content .el-input__inner{
+    height: 48px;
+}
+.loginBox .el-button{
+    width: 100%;
+    /* font-size: 20px; */
+    /* padding: 18px 20px; */
+}
+
+
+
+.el-main{
+    padding:0;
+}
+
+.el-header {
+    height:48px !important;
+    background-color: #47a8de;
+    padding:0;
+}
+.el-dialog__header {
+    line-height: 0px;
+}
+.searchBox{
+    float:right;
+    width: 240px;
+  }
+.searchBox .el-input__inner{
+    height:36px;
+    font-size: 12px;
+}
+.searchBox .el-input-group__append{
+    background-color: #47a8de;
+    color:#fff;
+    border-top: 1px solid #47a8de;
+    border-bottom: 1px solid #47a8de;
+}
+
+/* 列表头部选择状态栏样式修改 */
+.list{
+    background: #fff;
+  }
+.listHeader .el-select{
+    width: 85px;
+}
+.listHeader .el-input__suffix{
+    right:0;
+}
+.listHeader .el-input--suffix .el-input__inner{
+    padding: 0;
+    border: none;
+}
+.listHeader .el-input--suffix .el-input__inner::placeholder{
+    color:#444;
+}
+.listHeader .el-select .el-input .el-select__caret{
+    color: #444;
+}
+.popper__arrow{
+    left:110% !important;
+}
+
+.listContent li .lc-handle .el-button{
+    width: 64px;
+    height: 32px;
+    padding:0;
+}
+
+/*zhangjie*/
+.el-main{min-height: 600px}
+.black-text{color: #000 !important}
+.text-center{text-align:center;}
+.text-right{text-align: right;}
+.m-t-md{margin-top: 20px}
+.m-b-md{margin-bottom: 20px}
+.m-l{margin-left: 10px;}
+.m-t{margin-top: 25px}
+.crumbs-box{width: 100%; min-width: 1200px; background: #f0f0f0;}
+.user-crumbs{ padding: 0 12%; height: 60px; padding-top: 40px; margin: 0 auto}
+.user-crumbs h3{display: inline-block; font-size: 14px; color: #444444; font-weight: 100; margin-right: 10px;}
+.table-box{width: 100%; min-width: 1200px; background: #ffffff; padding: 0; margin: 0;font-size: 14px;}  
+.table-box thead th{height: 48px; color: #444444;border-bottom: 1px solid #e6e6e6; text-align: left; padding-left: 20px; white-space: nowrap; position:relative;}
+.dropList{ background-color: #FFF; position: absolute; top: 39px; left: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); padding:5px 10px; min-width: 50px;  z-index: 1;}
+.dropList li{text-align: center; height: 26px; line-height: 26px; cursor: pointer; color: #666; font-weight: 600}
+.table-box thead th:first-child,.table-box tbody td:first-child{padding-left: 12%;}
+.table-box thead th:last-child,.table-box tbody td:last-child{padding-right: 12%;}
+.table-box tbody td.opt{font-size: 0}
+.table-box tbody td{height: 60px; border-bottom: 1px solid #e6e6e6; text-align: left; padding-left: 20px; color: #999;word-break: break-word;}
+
+.addUser{padding: 0 12%; background: #FFF;}
+.addUser h3{padding-top: 48px; font-size: 18px; color: #999; padding-bottom:30px;}
+.addUser h3 em{ color: #EB7479;display: inline-block; width: 15px; text-align: center; font-size: 17px;}
+.addform .el-input{ width: 50%}
+.m-r{margin-right: 10px}
+.el-form-item__label{padding-right: 25px}
+.renewal .el-radio{margin-right: 0px; margin-bottom: 10px; width: 110px;}
+.renewal .el-radio:last-child{margin-right: 0;}
+.renewal .el-radio+.el-radio{margin-left: 0}
+.gray-text,.gray-text label{color: #999}
+
+.clearfix:after,.clearfix:before{content: "";clear:both;display:table;}
+.clearfix{zoom:1;clear:both;}
+.hj-fl{float: left;}
+.hj-fr{float: right;}
+
+
+
+.table-box2{width: 100%; padding: 0; margin: 0} 
+.table-box2 tbody td:first-child{padding-left: 50px;}
+.table-box2 tbody td:last-child{padding-right: 50px; text-align: right;}
+.table-box2 tbody td.opt{font-size: 0}
+.table-box2 tbody td{height: 96px; border-bottom: 1px solid #e6e6e6; text-align: left; padding-left: 20px; color: #000;word-break: break-word; font-size: 14px}
+
+.el-select--small{ width: 100%}
+
+.top-right,.top-right span,.top-right a,.top-right span .router-link-active{text-align: right; color: #fff;}
+.popper__arrow{display: none !important;}
+
+.blue-dot{width: 8px; height: 8px; background-color: #5EADFF; display: inline-block;}
+.reg-box{width: 504px; margin: 0 auto; text-align:center; }
+.reg-box h3{ font-size: 20px; color: #333; margin-bottom: 50px;}
+.head-white{width:100%; height:50px; position: absolute; top: 0; left: 0; background: #FFF}
+.register{position: absolute; left: 50%; top: 50%; margin: -182px 0 0 -252px}
+
+.icon-blue{display: inline-block; width: 16px; background-color: #47a8de;}
+
+.rotaDialog .el-dialog .el-dialog__body{text-align: center;}
+
+.spotImg .oupImg,.spotImg .oupImg .oupImgIcon,.spotImg .upContent-icon{height: 500px !important; line-height: 500px !important;} 
+.diaVideo .upVideo,.diaVideo .upVideoIcon,.diaVideo .upContent-icon{ height: 260px !important; line-height: 260px !important;}
+
+.small-img .oupImg,.small-img .oupImg .oupImgIcon,.small-img .oupImg .upContent-icon{width: 128px; height: 80px !important; line-height: 80px !important; font-size: 12px; font-weight: 100} 
+.video-size{max-width: 240px;}
+/* 新增板块头部 */
+.addHeader-title{
+    padding: 32px 0 16px 0;
+    font-size: 18px;
+    color: #333; 
+}
+.addHeader .el-col-15,.addHeader .el-col-9,.addHeader .el-input__inner{
+    background-color: #f0f0f0;
+}
+.addHeader .el-input__inner{
+    height: 56px;
+    border: none;
+}
+.addHeader .el-input__inner::placeholder{
+    font-size: 18px;
+    color:#999;
+}
+
+/*新增视频 */
+/* .addVideo .el-upload--picture-card {
+    width: 100%;
+    height: 270px;
+    line-height: 270px;
+    border: none;
+    border-radius: 0;
+    background-color: #f0f0f0;
+} */
+
+/* 添加单元dialog样式 */
+.gradesView .el-dialog{
+    width: 592px;
+}
+.gradesView .el-dialog--center .el-dialog__body{
+    padding-left: 72px;
+    padding-right: 72px;
+}
+.el-textarea__inner{
+    height: 100px;
+}
+
+/* resource lesson listHeader */
+.lessonView .el-tabs__header{
+    padding-left: 12%;
+    padding-right: 12%
+}
+.lessonView .el-tabs__content{
+    padding:0;
+}
+
+/* editResource input */
+.input_56 .el-input__inner{
+    border-radius: 0;
+    height: 56px;
+}
+.input_56 .el-input__inner::placeholder{
+    font-size: 20px;
+    color:#999;
+}
+.briefBox .el-textarea__inner{
+    height: 200px;
+    padding-left: 0px;
+    margin-top: 4px;
+    border: none;
+}
+.introBox .el-textarea__inner{
+    height: 270px;
+}
+.contentBox .el-textarea__inner{
+    height: 564px;
+}
+
+/* addZoomin dialog */
+.addZoomin .el-dialog {
+    width: 35%;
+}
+/* 进度条 */
+.percentBox{
+    width: 100%;
+    position: relative;
+}
+.percentBox>div{
+    width: 80%;
+}
+.percentBox>span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color:#eb7479;
+    cursor: pointer;
+}
+/* 教案列表 */
+.teach_info img{
+    max-width: 80px;
+  }
