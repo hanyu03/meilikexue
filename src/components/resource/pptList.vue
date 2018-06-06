@@ -172,8 +172,9 @@ export default {
             }).then(function (res) {   
                 console.log(res)          
             //   if(res.status == 201){
-            //     that.$message.success('添加成功');
-            //     that.dialogTableVisible = false;
+                that.$message.success('添加成功');
+                that.dialogTableVisible = false;
+                that.$parent.getList(that.$route.query.lesson_id,1)
             //     // that.$router.push('/media_/PPT');
             //   }else{
             //     that.$message.error('添加失败');

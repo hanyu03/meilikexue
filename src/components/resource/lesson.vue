@@ -31,7 +31,7 @@
               </ul>
               <ul class="listContent">
                 <li class="padding-aside border-bottom" v-for="(item,index) in listData" :key="index">
-                  <div class="item_index">{{item.index}}</div>
+                  <div class="item_index">{{index+1}}</div>
                   <div class="item_img lc_img">
                     <div>
                         <img :src="item.imageUrl" alt="">
@@ -51,8 +51,10 @@
                     <p>{{item.brief}}</p>
                   </div>
                   <div class="list_handle lc_handle">
-                      <el-button type="primary" size="small" @click="editResource(item.id)">编辑</el-button>
-                      <el-button type="danger" size="small" @click="deleteResource(item.id)">删除</el-button>
+                      <el-button type="primary" size="small" v-if="item.meta_info.res_type == 'PPT'" @click="editPPT(item.id)">编辑</el-button>
+                      <el-button type="primary" size="small" v-else @click="editResource(item.id)">编辑</el-button>
+                      <el-button type="danger" size="small" v-if="item.meta_info.res_type == 'PPT'" @click="deletePPT(item.id)">删除</el-button>
+                      <el-button type="danger" size="small" v-else @click="deleteResource(item.id)">删除</el-button>
                   </div>
                 </li>
               </ul>
@@ -120,6 +122,7 @@ export default {
           Perpage:10,
           Results:1
       },
+      pptData:[],
       pageData2:{
           PageID:1,
           Perpage:10,
@@ -158,9 +161,9 @@ export default {
       let that = this;
       this.axios.get('/BeautyScience/resources',{
         params:{
-            lesson_id:id,
-            page:page,
-            per:that.pageData.Perpage,
+          lesson_id:id,
+          page:page,
+          per:that.pageData.Perpage,
         }
       })
       .then((response) => {
@@ -218,8 +221,52 @@ export default {
               });
           })
         }
+        that.getPPTList(that.lesson_id)
         // this.listData = dataArr
       })
+    },
+    getPPTList(id){
+        let that = this;
+        this.axios.get('/BeautyScience/coursewares',{
+          params:{
+            lesson_id:id,
+          }
+        })
+        .then(function(response){
+                // that.listData = []
+                let dataArr = response.data.records
+                that.pageData.Results = that.pageData.Results+response.data.all;
+                
+                for(let i=0;i<dataArr.length;i++){
+                    // let sortTime = new Date(dataArr[i].updated_at);
+                    // dataArr[i].upTime = Date.parse(sortTime);
+                    dataArr[i].updated_at = dataArr[i].updated_at.slice(0,10)
+                    dataArr[i].file_size = ((dataArr[i].file_size/1024)/1024).toFixed(2)
+                    dataArr[i].name = dataArr[i].title
+                    // dataArr[i].meta_info.res_type = "PPT"
+                    that.$set(dataArr[i],'meta_info',{})
+                    that.$set(dataArr[i].meta_info,'res_type','PPT')
+                    that.axios.post('/BeautyScience/qiniu/url',{
+                        res_name:dataArr[i].thumb
+                    })
+                    .then(function(res){
+                        dataArr[i].imageUrl=res.data.url
+                        that.listData.unshift(dataArr[i])
+                        that.listData.sort(function(a,b){
+                            return b.upTime - a.upTime
+                        })
+                        that.isLoading = false;
+                        that.loading = false;
+                    })
+                    .catch(function(error){
+                        that.$message({
+                            message: '图片上传出错，请重新上传',
+                            type: 'warning'
+                        });
+                    })
+                }
+                that.loading = false;
+        })
     },
     handleCurrentChange(val){
         if(this.searchContent == ''){
@@ -304,9 +351,21 @@ export default {
           that.getList(that.lesson_id,1);
       })
     },
+    deletePPT(id){
+      let that = this;
+      that.axios.delete('/BeautyScience/lessons/'+that.lesson_id+'/coursewares/'+id)
+      .then(function(response){
+          that.listData = []
+          that.getList(that.lesson_id,1);
+      })
+    },
     editResource(id){
       let that = this;
       this.$router.push({name:'editResource',query:{resId:id,lesson_id:that.lesson_id}})
+    },
+    editPPT(id){
+      let that = this;
+      this.$router.push({name:'coursewaresEdit',params:{id:id,}})
     },
     publicRes(){
       let id = this.$route.query.lesson_id,that = this,

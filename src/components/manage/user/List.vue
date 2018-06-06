@@ -12,7 +12,7 @@
 							<area-select type='text' v-model="location" :data="pcaa"></area-select>
 						</el-col> -->
 						<el-col :span="8" class="areaSelect">
-							<el-input placeholder="输入学校" v-model="shcool">
+							<el-input placeholder="输入学校" v-model="school">
 								<el-button type="primary" slot="append" @click="searchList">搜索</el-button>
 							</el-input>
 						</el-col>
@@ -118,7 +118,7 @@
 // import {AreaSelect} from 'vue-area-linkage';
 import {CustomFun,pageSizes} from '../../../assets/main.js'
 
-const pcaaDefault = require('area-data/pcaa');
+// const pcaaDefault = require('area-data/pcaa');
     export default {
 			// components:{AreaSelect},
       data() {
@@ -131,8 +131,8 @@ const pcaaDefault = require('area-data/pcaa');
         	bookVal:{id:null,name:'全部版本'},
         	DropShow1:false,
 					DropShow2:false,
-					location:[],
-					shcool:'',      	
+					// location:[],
+					school:'',      	
         	searchContent:'',
         	identityArr:[
         		{value:null,name:'全部身份'},
@@ -192,14 +192,14 @@ const pcaaDefault = require('area-data/pcaa');
       	},
       	searchList(){
       		var that = this;
-      		if(this.searchContent==''&&this.location.length==0){
+      		if(this.school==''){
       			that.getList(1);
       		}else{
       			that.axios({
 		          method:'post',
 		          url: '/BeautyScience/users/search',
 		          data:{
-					school_name:that.shcool
+					school_name:that.school
 		          }
 		        }).then(function (res) {	        		        	
 		        	that.tableData = res.data.records;	        	
